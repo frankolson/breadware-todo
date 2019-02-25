@@ -4,7 +4,7 @@ import Todo from './Todo'
 import Filters from './Filters'
 
 const TodoList = ({ todos, totalTodoCount, onTodoClick }) => (
-  <ul class="list-group">
+  <ul className="list-group">
     {todos.map((todo) => (
       <Todo key={todo.id} {...todo} onClick={() => onTodoClick(todo.id)} />
     ))}

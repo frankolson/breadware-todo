@@ -6,7 +6,7 @@ let AddTodo = ({ dispatch }) => {
   let input
 
   return (
-    <div class="card card-body mb-2">
+    <div className="card card-body mb-2">
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -17,10 +17,10 @@ let AddTodo = ({ dispatch }) => {
           input.value = ''
         }}
       >
-        <div class="form-group">
+        <div className="form-group">
           <input
             placeholder="Enter new todo here and click enter to create..."
-            class="form-control"
+            className="form-control"
             ref={node => {
               input = node
             }}

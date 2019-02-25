@@ -5,6 +5,7 @@ let nextTodoId = 0
  */
 
 export const ADD_TODO = 'ADD_TODO'
+export const UPDATE_TODO = 'UPDATE_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
 
 /*
@@ -24,6 +25,12 @@ export const VisibilityFilters = {
 export const addTodo = text => ({
   type: ADD_TODO,
   id: nextTodoId++,
+  text
+})
+
+export const updateTodo = (id, text) => ({
+  type: UPDATE_TODO,
+  id,
   text
 })
 

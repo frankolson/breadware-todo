@@ -3,7 +3,7 @@ import FilterLink from '../containers/FilterLink'
 import { VisibilityFilters } from '../actions'
 
 const Filters = () => (
-  <li class="list-group-item">
+  <li className="list-group-item">
     Show: <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
     {', '}
     <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>

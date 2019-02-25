@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import todoApp from './reducers'
-import App from './components/App'
+import Todos from './components/Todos'
+import EditTodoContainer from './containers/EditTodoContainer'
 import './index.css'
 
 const store = createStore(
@@ -18,7 +19,8 @@ render(
   <Provider store={store}>
     <Router>
       <div>
-        <Route path="/:filter?" component={App} />
+        <Route exact path="/todos/:filter?" component={Todos} />
+        <Route exact path="/todos/:id?/edit" component={EditTodoContainer} />
       </div>
     </Router>
   </Provider>,
