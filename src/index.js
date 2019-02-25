@@ -3,8 +3,11 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.css'
+
 import todoApp from './reducers'
 import App from './components/App'
+import './index.css'
 
 const store = createStore(
   todoApp,
@@ -21,4 +24,3 @@ render(
   </Provider>,
   document.getElementById('root')
 )
-

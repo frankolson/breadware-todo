@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 const Todo = ({ onClick, completed, text }) =>(
   <li
+    class="list-group-item"
     onClick={onClick}
     style={{
       textDecoration: completed ? 'line-through' : 'none'
@@ -19,4 +20,3 @@ Todo.propTypes = {
 }
 
 export default Todo
-

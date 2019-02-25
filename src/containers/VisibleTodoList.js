@@ -10,11 +10,14 @@ const getVisibleTodos = (todos, filter) => {
       return todos.filter(t => t.completed)
     case 'SHOW_ACTIVE':
       return todos.filter(t => !t.completed)
+    default:
+      return todos
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    totalTodoCount: state.todos.length,
     todos: getVisibleTodos(state.todos, ownProps.filter)
   }
 }
@@ -33,4 +36,3 @@ const VisibleTodoList = connect(
 )(TodoList)
 
 export default VisibleTodoList
-

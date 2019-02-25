@@ -6,7 +6,7 @@ let AddTodo = ({ dispatch }) => {
   let input
 
   return (
-    <div>
+    <div class="card card-body mb-2">
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -17,12 +17,15 @@ let AddTodo = ({ dispatch }) => {
           input.value = ''
         }}
       >
-        <input
-          ref={node => {
-            input = node
-          }}
-        />
-        <button type="submit">Add Todo</button>
+        <div class="form-group">
+          <input
+            placeholder="Enter new todo here and click enter to create..."
+            class="form-control"
+            ref={node => {
+              input = node
+            }}
+          />
+        </div>
       </form>
     </div>
   )
@@ -30,4 +33,3 @@ let AddTodo = ({ dispatch }) => {
 AddTodo = connect()(AddTodo)
 
 export default AddTodo
-
