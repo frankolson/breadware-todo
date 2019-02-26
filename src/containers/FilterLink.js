@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 const FilterLink = ({ filter, children }) => (
   <NavLink
     exact
-    to={filter === 'SHOW_ALL' ? '/todos' : `/todos/${filter}`}
+    to={filter === 'SHOW_ALL' ? '/todos' : `/todos/filter/${filter}`}
     activeStyle={{
       textDecoration: 'none',
       color: 'black'

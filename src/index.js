@@ -6,8 +6,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import todoApp from './reducers'
-import Todos from './components/Todos'
+import AddTodoContainer from './containers/AddTodoContainer'
 import EditTodoContainer from './containers/EditTodoContainer'
+import VisibleTodoList from './containers/VisibleTodoList'
 import './index.css'
 
 const store = createStore(
@@ -19,7 +20,9 @@ render(
   <Provider store={store}>
     <Router>
       <div>
-        <Route exact path="/todos/:filter?" component={Todos} />
+        <Route exact path="/todos/" component={VisibleTodoList} />
+        <Route exact path="/todos/create" component={AddTodoContainer} />
+        <Route exact path="/todos/filter/:filter?" component={VisibleTodoList} />
         <Route exact path="/todos/:id?/edit" component={EditTodoContainer} />
       </div>
     </Router>

@@ -15,10 +15,10 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, { match: { params } }) => {
   return {
     totalTodoCount: state.todos.length,
-    todos: getVisibleTodos(state.todos, ownProps.filter)
+    todos: getVisibleTodos(state.todos, params.filter || 'SHOW_ALL')
   }
 }
 
