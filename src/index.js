@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 import todoApp from './reducers'
 import NavContainer from './containers/NavContainer'
+import FlashListContainer from './containers/FlashListContainer'
 import HomeContainer from './containers/HomeContainer'
 import LoginContainer from './containers/LoginContainer'
 import PrivateRoute from './containers/PrivateRoute'
@@ -26,13 +27,35 @@ render(
     <Router>
       <div>
         <NavContainer />
+        <FlashListContainer />
 
         <Route exact path="/" component={HomeContainer} />
         <Route exact path="/login" component={LoginContainer} />
-        <PrivateRoute exact path="/todos" component={VisibleTodoList} />
-        <PrivateRoute exact path="/todos/create" component={AddTodoContainer} />
-        <PrivateRoute exact path="/todos/filter/:filter?" component={VisibleTodoList} />
-        <PrivateRoute exact path="/todos/:id?/edit" component={EditTodoContainer} />
+
+        <PrivateRoute
+          exact
+          path="/todos"
+          component={VisibleTodoList}
+          roles={['employee', 'manager']}
+        />
+        <PrivateRoute
+          exact
+          path="/todos/filter/:filter?"
+          component={VisibleTodoList}
+          roles={['employee', 'manager']}
+        />
+        <PrivateRoute
+          exact
+          path="/todos/create"
+          component={AddTodoContainer}
+          roles={['manager']}
+        />
+        <PrivateRoute
+          exact
+          path="/todos/:id?/edit"
+          component={EditTodoContainer}
+          roles={['manager']}
+        />
       </div>
     </Router>
   </Provider>,

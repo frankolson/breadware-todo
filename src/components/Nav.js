@@ -3,25 +3,32 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class Nav extends Component {
+  logout = () => (
+    this.props.inauthenticate()
+      .then(() => this.props.history.push('/'))
+  )
+
   render() {
     return (
-      <nav className="navbar navbar-light bg-light">
-        <div className="container">
-          <Link to="/" className="navbar-brand">Breadware Todos</Link>
+      <div>
+        <nav className="navbar navbar-light bg-light">
+          <div className="container">
+            <Link to="/" className="navbar-brand">Breadware Todos</Link>
 
-          {this.props.authenticated &&
-            <div>
-              <span className="mr-2">Logged in as a {this.props.role}</span>
+            {this.props.authenticated &&
+              <div>
+                <span className="mr-2">Logged in as a {this.props.role}</span>
 
-              <button
-                type="button"
-                className="btn btn-sm btn-outline-secondary"
-                onClick={() => this.props.inauthenticate()}
-              >Logout</button>
-            </div>
-          }
-        </div>
-      </nav>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-outline-secondary"
+                  onClick={this.logout}
+                >Logout</button>
+              </div>
+            }
+          </div>
+        </nav>
+      </div>
     )
   }
 }
@@ -29,7 +36,10 @@ class Nav extends Component {
 Nav.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   inauthenticate: PropTypes.func.isRequired,
-  role: PropTypes.string
+  role: PropTypes.string,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
 }
 
 export default Nav

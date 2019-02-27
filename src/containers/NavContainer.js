@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { inauthenticate } from '../actions'
 import Nav from '../components/Nav'
 
@@ -16,5 +17,5 @@ const NavContainer = connect(
   mapDispatchToProps
 )(Nav)
 
-export default NavContainer
+export default withRouter(NavContainer)
 

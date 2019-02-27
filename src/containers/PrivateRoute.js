@@ -1,23 +1,53 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Route, withRouter } from 'react-router-dom'
-import { authenticate } from '../actions'
+import { authenticate, addFlash } from '../actions'
 
-const AuthCheck = ({component: Component, authenticated, ...rest }) => (
+const UnAuthenticated = ({ location, setFlash }) => {
+  setFlash('You need to login first')
+
+  return <Redirect to={{
+    pathname: '/login',
+    state: { from: location }
+  }} />
+}
+
+const UnAuthorized = ({ location, setFlash }) => {
+  setFlash('You are not authorized to do that')
+
+  return <Redirect to={{
+    pathname: '/',
+    state: { flash: 'You are not authorized to do that' }
+  }} />
+}
+
+const AuthCheck = ({
+  component: Component,
+  authenticated,
+  authorized,
+  setFlash,
+  ...rest
+}) => (
   <Route {...rest} render={props => (
-    authenticated
-      ? <Component {...props} />
-      : <Redirect to={{ pathname: '/login', state: { from: props.location }}} />
+    authenticated ? (
+      authorized
+        ? <Component {...props} />
+        : <UnAuthorized {...props} setFlash={setFlash} />
+    ) : (
+      <UnAuthenticated {...props} setFlash={setFlash} />
+    )
   )} />
 )
 
 const mapStateToProps = (state, ownProps) => ({
   authenticated: state.user.authenticated,
+  authorized: (ownProps.roles || []).includes(state.user.role),
   ...ownProps
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  authenticate: () => dispatch(authenticate)
+  authenticate: () => dispatch(authenticate()),
+  setFlash: (text) => dispatch(addFlash(text))
 })
 
 const PrivateRoute = connect(

@@ -1,4 +1,5 @@
 let nextTodoId = 0
+let nextFlashId = 0
 
 /*
  * action types
@@ -9,6 +10,8 @@ export const INAUTHENTICATE = 'INAUTHENTICATE'
 export const ADD_TODO = 'ADD_TODO'
 export const UPDATE_TODO = 'UPDATE_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
+export const ADD_FLASH = 'ADD_FLASH'
+export const REMOVE_FLASH = 'REMOVE_FLASH'
 
 /*
  * other constants
@@ -47,6 +50,17 @@ export const updateTodo = (id, text) => ({
 
 export const toggleTodo = id => ({
   type: TOGGLE_TODO,
+  id
+})
+
+export const addFlash = text => ({
+  type: ADD_FLASH,
+  id: nextFlashId++,
+  text
+})
+
+export const removeFlash = id => ({
+  type: REMOVE_FLASH,
   id
 })
 
