@@ -34,9 +34,9 @@ const todos = (state = [], action) => {
 const user = (state = { authenticated: false }, action) => {
   switch (action.type) {
     case AUTHENTICATE:
-      return { ...state, authenticated: true }
+      return { ...state, role: action.role, authenticated: true }
     case INAUTHENTICATE:
-      return { ...state, authenticated: false }
+      return { ...state, role: null, authenticated: false }
     default:
       return state
   }

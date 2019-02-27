@@ -10,11 +10,15 @@ class Nav extends Component {
           <Link to="/" className="navbar-brand">Breadware Todos</Link>
 
           {this.props.authenticated &&
-            <button
-              type="button"
-              className="btn btn-sm btn-outline-secondary"
-              onClick={() => this.props.inauthenticate()}
-            >Logout</button>
+            <div>
+              <span className="mr-2">Logged in as a {this.props.role}</span>
+
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-secondary"
+                onClick={() => this.props.inauthenticate()}
+              >Logout</button>
+            </div>
           }
         </div>
       </nav>
@@ -24,7 +28,8 @@ class Nav extends Component {
 
 Nav.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  inauthenticate: PropTypes.func.isRequired
+  inauthenticate: PropTypes.func.isRequired,
+  role: PropTypes.string
 }
 
 export default Nav

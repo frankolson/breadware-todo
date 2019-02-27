@@ -9,19 +9,29 @@ class Home extends Component {
     }
 
     return (
-      <div className="text-center my-4">
+      <div className="container container--small text-center my-4">
         <p>
           Welcome to my Breadware Tech Challenge! Login in to begin creating
           todos
         </p>
 
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => this.props.authenticate()}
-        >
-          Login
-        </button>
+        <div className="d-flex justify-content-around">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => this.login('employee')}
+          >
+            Login as an Employee
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => this.login('manager')}
+          >
+            Login as a Manager
+          </button>
+        </div>
       </div>
     )
   }

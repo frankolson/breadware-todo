@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  authenticate: () => dispatch(authenticate())
+  authenticate: (role) => dispatch(authenticate(role))
 })
 
 const LoginContainer = connect(

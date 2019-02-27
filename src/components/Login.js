@@ -7,8 +7,8 @@ class Login extends Component {
     redirectToReferrer: false
   }
 
-  login = () => {
-    this.props.authenticate()
+  login = (role) => {
+    this.props.authenticate(role)
       .then(() => (
         this.setState({ redirectToReferrer: true })
       ))
@@ -23,16 +23,26 @@ class Login extends Component {
     }
 
     return (
-      <div className="text-center my-4">
+      <div className="container container--small text-center my-4">
         <p>Go ahead and login!</p>
 
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={this.login}
-        >
-          Login
-        </button>
+        <div className="d-flex justify-content-around">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => this.login('employee')}
+          >
+            Login as an Employee
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => this.login('manager')}
+          >
+            Login as a Manager
+          </button>
+        </div>
       </div>
     )
   }

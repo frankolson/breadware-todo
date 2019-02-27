@@ -24,8 +24,9 @@ export const VisibilityFilters = {
  * action creators
  */
 
-const login = () => ({
+const login = (role) => ({
   type: AUTHENTICATE,
+  role
 })
 
 const logout = () => ({
@@ -53,10 +54,10 @@ export const toggleTodo = id => ({
  * async methods
  */
 
-export const authenticate = () => (
+export const authenticate = (role) => (
   dispatch => (
     new Promise(resolve => setTimeout(resolve, 500))
-      .then(() => dispatch(login()))
+      .then(() => dispatch(login(role)))
   )
 )
 

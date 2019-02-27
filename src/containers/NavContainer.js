@@ -4,6 +4,7 @@ import Nav from '../components/Nav'
 
 const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
+  role: state.user.role
 })
 
 const mapDispatchToProps = (dispatch) => ({
