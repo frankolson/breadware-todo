@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class Nav extends Component {
-  logout = () => (
+  logout = () => {
+    this.props.history.push('/')
     this.props.inauthenticate()
-      .then(() => this.props.history.push('/'))
-  )
+  }
 
   render() {
     return (

@@ -15,8 +15,12 @@ class Login extends Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
+    const { from } = this.props.location.state || { from: { pathname: '/todos' } }
     const { redirectToReferrer } = this.state
+
+    if (this.props.authenticated) {
+      return <Redirect to='/todos' />
+    }
 
     if (redirectToReferrer) {
       return <Redirect to={from} />
@@ -50,6 +54,7 @@ class Login extends Component {
 
 Login.propTypes = {
   authenticate: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
   location: PropTypes.shape({
     state: PropTypes.shape({
       from: PropTypes.shape({ pathname: PropTypes.string })

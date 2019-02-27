@@ -4,7 +4,7 @@ import { updateTodo } from '../actions'
 import EditTodo from '../components/EditTodo'
 
 const findTodo = (id, todos) => (
-  todos.find(todo => todo.id == id)
+  todos.find(todo => todo.id === id)
 )
 
 const mapStateToProps = (state, { match: { params } }) => ({

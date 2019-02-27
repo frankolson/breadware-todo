@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
+import Home from './components/Home'
 import NavContainer from './containers/NavContainer'
 import FlashListContainer from './containers/FlashListContainer'
-import HomeContainer from './containers/HomeContainer'
 import LoginContainer from './containers/LoginContainer'
 import PrivateRoute from './containers/PrivateRoute'
 import AddTodoContainer from './containers/AddTodoContainer'
@@ -15,7 +15,7 @@ const routes = (
     <NavContainer />
     <FlashListContainer />
 
-    <Route exact path="/" component={HomeContainer} />
+    <Route exact path="/" component={Home} />
     <Route exact path="/login" component={LoginContainer} />
 
     <PrivateRoute

@@ -16,7 +16,7 @@ const Todo = ({ toggleTodo, removeTodo, id, completed, role, text }) =>(
       </span>
     </div>
 
-    {role == 'manager' &&
+    {role === 'manager' &&
       <div>
         <Link to={`/todos/${id}/edit`} className="mr-1">Edit</Link>
         <a href="#" onClick={removeTodo} className="text-danger">Delete</a>

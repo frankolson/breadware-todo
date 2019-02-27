@@ -3,6 +3,7 @@ import { authenticate } from '../actions'
 import Login from '../components/Login'
 
 const mapStateToProps = (state, ownProps) => ({
+  authenticated: state.user.authenticated,
   ...ownProps
 })
 
