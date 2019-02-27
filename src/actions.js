@@ -4,6 +4,8 @@ let nextTodoId = 0
  * action types
  */
 
+export const AUTHENTICATE = 'AUTHENTICATE'
+export const INAUTHENTICATE = 'INAUTHENTICATE'
 export const ADD_TODO = 'ADD_TODO'
 export const UPDATE_TODO = 'UPDATE_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
@@ -22,6 +24,14 @@ export const VisibilityFilters = {
  * action creators
  */
 
+const login = () => ({
+  type: AUTHENTICATE,
+})
+
+const logout = () => ({
+  type: INAUTHENTICATE,
+})
+
 export const addTodo = text => ({
   type: ADD_TODO,
   id: nextTodoId++,
@@ -38,4 +48,22 @@ export const toggleTodo = id => ({
   type: TOGGLE_TODO,
   id
 })
+
+/*
+ * async methods
+ */
+
+export const authenticate = () => (
+  dispatch => (
+    new Promise(resolve => setTimeout(resolve, 500))
+      .then(() => dispatch(login()))
+  )
+)
+
+export const inauthenticate = () => (
+  dispatch => (
+    new Promise(resolve => setTimeout(resolve, 500))
+      .then(() => dispatch(logout()))
+  )
+)
 

@@ -1,5 +1,11 @@
 import { combineReducers } from 'redux'
-import { ADD_TODO, UPDATE_TODO, TOGGLE_TODO } from './actions'
+import {
+  ADD_TODO,
+  AUTHENTICATE,
+  INAUTHENTICATE,
+  TOGGLE_TODO,
+  UPDATE_TODO
+} from './actions'
 
 const todos = (state = [], action) => {
   switch (action.type) {
@@ -25,7 +31,21 @@ const todos = (state = [], action) => {
   }
 }
 
-const todoApp = combineReducers({ todos })
+const user = (state = { authenticated: false }, action) => {
+  switch (action.type) {
+    case AUTHENTICATE:
+      return { ...state, authenticated: true }
+    case INAUTHENTICATE:
+      return { ...state, authenticated: false }
+    default:
+      return state
+  }
+}
+
+const todoApp = combineReducers({
+  todos,
+  user
+})
 
 export default todoApp
 

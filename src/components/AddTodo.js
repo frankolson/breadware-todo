@@ -47,7 +47,7 @@ class AddTodo extends Component {
 }
 
 AddTodo.propTypes = {
-  updateTodo: PropTypes.func.isRequired,
+  addTodo: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
   })
