@@ -9,9 +9,7 @@ class Login extends Component {
 
   login = (role) => {
     this.props.authenticate(role)
-      .then(() => (
-        this.setState({ redirectToReferrer: true })
-      ))
+      .then(() => this.setState({ redirectToReferrer: true }))
   }
 
   render() {
@@ -63,3 +61,4 @@ Login.propTypes = {
 }
 
 export default Login
+

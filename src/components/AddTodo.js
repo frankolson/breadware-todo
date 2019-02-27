@@ -3,12 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class AddTodo extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      text: ''
-    }
+  state = {
+    text: ''
   }
 
   handleSubmit = (e) => {
