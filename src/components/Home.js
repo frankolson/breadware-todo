@@ -19,7 +19,7 @@ class Home extends Component {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => this.login('employee')}
+            onClick={() => this.props.authenticate('employee')}
           >
             Login as an Employee
           </button>
@@ -27,7 +27,7 @@ class Home extends Component {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => this.login('manager')}
+            onClick={() => this.props.authenticate('manager')}
           >
             Login as a Manager
           </button>
@@ -38,7 +38,8 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  authenticate: PropTypes.func.isRequired
+  authenticated: PropTypes.bool.isRequired,
+  authenticate: PropTypes.func.isRequired,
 }
 
 export default Home

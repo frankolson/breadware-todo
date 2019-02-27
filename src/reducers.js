@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import {
   ADD_TODO,
+  REMOVE_TODO,
   AUTHENTICATE,
   INAUTHENTICATE,
   TOGGLE_TODO,
@@ -45,6 +46,8 @@ const todos = (state = [], action) => {
       return state.map(todo => (
         todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       ))
+    case REMOVE_TODO:
+      return state.filter(todo => todo.id !== action.id)
     default:
       return state
   }
