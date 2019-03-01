@@ -1,6 +1,8 @@
 # My Breadware Tech Challenge
 
-Todo-app written with React and TypeScript using trivial authentication system
+Todo-app written with React and TypeScript using trivial authentication system,
+bootstrapped with [Create React
+App](https://github.com/facebook/create-react-app)
 
 ## Dependencies
 - Yarn 1.9.4
