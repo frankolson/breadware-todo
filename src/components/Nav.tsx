@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 export interface Props {
-  authenticated(role: string): void,
+  authenticated: boolean,
   inauthenticate(): void,
   role: string,
   history: {

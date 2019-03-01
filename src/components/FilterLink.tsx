@@ -6,7 +6,7 @@ export interface Props {
   children: ReactNode
 }
 
-export function FilterLink({ filter, children }: Props) {
+function FilterLink({ filter, children }: Props) {
   return(
     <NavLink
       exact

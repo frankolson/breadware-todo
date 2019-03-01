@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export interface Props {
   id: number,
-  text: string,
+  text: string | null,
   updateTodo(id: number, text: string): void,
   history: {
     push(input: string): void,
@@ -11,7 +11,7 @@ export interface Props {
 }
 
 export interface State {
-  text: string,
+  text: string | null,
 }
 
 class EditForm extends Component<Props, State> {
@@ -25,10 +25,11 @@ class EditForm extends Component<Props, State> {
 
   handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!this.state.text.trim()) { return }
+    const { text } = this.state
+    if (text == null || !text.trim()) { return }
 
     const { id, updateTodo, history } = this.props
-    updateTodo(id, this.state.text)
+    updateTodo(id, text)
     history.push("/todos")
   }
 
@@ -48,7 +49,7 @@ class EditForm extends Component<Props, State> {
                 placeholder="Whoops, Todos need some text..."
                 className="form-control"
                 onChange={(e) => this.handleUpdate(e.target.value)}
-                value={this.state.text}
+                value={this.state.text || ''}
               />
             </div>
           </form>

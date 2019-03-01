@@ -1,15 +1,15 @@
-import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
+import { connect } from 'react-redux'
 import { ThunkDispatch } from 'redux-thunk'
+import { withRouter } from 'react-router-dom'
 
 import { StoreState } from '../types'
 import * as actions from '../actions/userActions'
-import Login from '../components/Login'
+import Home from '../components/Home'
 
-export function mapStateToProps(state, ownProps) {
+export function mapStateToProps({ user: { authenticated } }: StoreState) {
   return {
-    authenticated: state.user.authenticated,
-    ...ownProps
+    authenticated
   }
 }
 
@@ -19,10 +19,10 @@ export function mapDispatchToProps(dispatch: ThunkDispatch<StoreState, any, AnyA
   }
 }
 
-const LoginContainer = connect(
+const HomeContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(Home)
 
-export default LoginContainer
+export default withRouter(HomeContainer as any)
 
