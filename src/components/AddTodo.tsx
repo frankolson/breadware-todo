@@ -2,35 +2,45 @@ import React, { Component, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 
 export interface Props {
-  addTodo(text: string): void,
+  addTodo(title: string, text: string): void,
   history: {
     push(input: string): void,
   }
 }
 
 export interface State {
+  title: string,
   text: string,
 }
 
 class AddTodo extends Component<Props, State> {
   state = {
+    title: '',
     text: ''
   }
 
   handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!this.state.text.trim()) { return }
+    const { title, text } = this.state
+    if (!title.trim()) { return }
+    if (!text.trim()) { return }
 
     const { addTodo, history } = this.props
-    addTodo(this.state.text)
+    addTodo(title, text)
     history.push("/todos")
   }
 
-  handleUpdate = (text: string) => {
+  handleTitleUpdate = (title: string) => {
+    this.setState({ title })
+  }
+
+  handleTextUpdate = (text: string) => {
     this.setState({ text })
   }
 
   render() {
+    const { title, text } = this.state
+
     return (
       <div className="container container--small my-4">
         <Link to="/todos" className="mb-1">Back to Todos</Link>
@@ -38,13 +48,29 @@ class AddTodo extends Component<Props, State> {
         <div className="card card-body">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
+              <label>Title</label>
               <input
-                placeholder="Go ahead and add the todo here and hit enter to create"
+                placeholder="Todo Title"
                 className="form-control"
-                onChange={(e) => this.handleUpdate(e.target.value)}
-                value={this.state.text}
+                onChange={(e) => this.handleTitleUpdate(e.target.value)}
+                value={title}
               />
             </div>
+
+            <div className="form-group">
+              <label>Description</label>
+              <textarea
+                placeholder="Todo description"
+                className="form-control"
+                onChange={(e) => this.handleTextUpdate(e.target.value)}
+                value={text}
+              ></textarea>
+            </div>
+
+            <button
+              disabled={!title.trim() || !text.trim()}
+              className="btn btn-primary"
+            >Add Todo</button>
           </form>
         </div>
       </div>

@@ -7,21 +7,24 @@ export interface Props {
   id: number,
   completed: boolean,
   role: string,
+  title: string,
   text: string,
 }
 
-const Todo = ({ toggleTodo, removeTodo, id, completed, role, text }: Props) =>(
+const Todo = ({ toggleTodo, removeTodo, id, completed, role, title, text }: Props) =>(
   <li className="list-group-item d-flex justify-content-between">
-    <div>
+    <div className="d-flex align-items-center">
       <i
         onClick={role === 'employee' ? toggleTodo : null}
-        className={`far fa-${completed ? 'check-square' : 'square'} mr-1`}
+        className={`far fa-${completed ? 'check-square' : 'square'} mr-2`}
         style={{ cursor: role === 'employee' ? 'pointer' : 'default' }}
       ></i>
 
       <span style={{ textDecoration: completed ? 'line-through' : 'none' }}>
-        {text}
+        <div>{title}</div>
+        <small className="text-muted">{text}</small>
       </span>
+      
     </div>
 
     {role === 'manager' &&

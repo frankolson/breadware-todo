@@ -5,12 +5,14 @@ let nextTodoId = 0
 export interface AddTodo {
   type: constants.ADD_TODO,
   id: number,
+  title: string,
   text: string
 }
 
 export interface UpdateTodo {
   type: constants.UPDATE_TODO,
   id: number,
+  title: string,
   text: string
 }
 
@@ -26,18 +28,20 @@ export interface ToggleTodo {
 
 export type TodoAction = AddTodo | UpdateTodo | RemoveTodo | ToggleTodo
 
-export function addTodo(text: string): AddTodo {
+export function addTodo(title: string, text: string): AddTodo {
   return {
     type: constants.ADD_TODO,
     id: nextTodoId++,
+    title,
     text
   }
 }
 
-export function updateTodo(id: number, text: string): UpdateTodo {
+export function updateTodo(id: number, title: string, text: string): UpdateTodo {
   return {
     type: constants.UPDATE_TODO,
     id,
+    title,
     text
   }
 }

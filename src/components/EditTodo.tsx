@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom'
 
 export interface Props {
   id: number,
+  title: string,
   text: string | null,
-  updateTodo(id: number, text: string): void,
+  updateTodo(id: number, title: string, text: string): void,
   history: {
     push(input: string): void,
   }
 }
 
 export interface State {
+  title: string | null,
   text: string | null,
 }
 
@@ -19,25 +21,38 @@ class EditForm extends Component<Props, State> {
     super(props)
 
     this.state = {
+      title: props.title,
       text: props.text
     }
   }
 
   handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const { text } = this.state
-    if (text == null || !text.trim()) { return }
-
+    const { title, text } = this.state
+    if (!this.stateFieldBlank('title')) { return }
+    if (!this.stateFieldBlank('text')) { return } 
     const { id, updateTodo, history } = this.props
-    updateTodo(id, text)
+    updateTodo(id, title || '', text || '')
     history.push("/todos")
   }
 
-  handleUpdate = (text: string) => {
+  handleTitleUpdate = (title: string) => {
+    this.setState({ title })
+  }
+
+  handleTextUpdate = (text: string) => {
     this.setState({ text })
   }
 
+  stateFieldBlank = (field) => (
+    this.state[field] == null || this.state[field].trim()
+  )
+
   render() {
+    const { title, text } = this.state
+    const titleBlank = this.stateFieldBlank('title')
+    const textBlank = this.stateFieldBlank('text')
+
     return (
       <div className="container container--small my-4">
         <Link to="/todos" className="mb-1">Back to Todos</Link>
@@ -45,13 +60,29 @@ class EditForm extends Component<Props, State> {
         <div className="card card-body">
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
+              <label>Title</label>
               <input
-                placeholder="Whoops, Todos need some text..."
+                placeholder="Todo Title"
                 className="form-control"
-                onChange={(e) => this.handleUpdate(e.target.value)}
-                value={this.state.text || ''}
+                onChange={(e) => this.handleTitleUpdate(e.target.value)}
+                value={title || ''}
               />
             </div>
+
+            <div className="form-group">
+              <label>Description</label>
+              <textarea
+                placeholder="Todo description"
+                className="form-control"
+                onChange={(e) => this.handleTextUpdate(e.target.value)}
+                value={text || ''}
+              ></textarea>
+            </div>
+
+            <button
+              disabled={!titleBlank || !textBlank}
+              className="btn btn-primary"
+            >Update Todo</button>
           </form>
         </div>
       </div>

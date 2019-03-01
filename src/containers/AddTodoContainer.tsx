@@ -7,11 +7,14 @@ import * as actions from '../actions/todoActions'
 import AddTodo from '../components/AddTodo'
 
 export function mapStateToProps(state: StoreState) {
+  return {}
 }
 
 export function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    addTodo: (text: string) => dispatch(actions.addTodo(text))
+    addTodo: (title: string, text: string) => (
+      dispatch(actions.addTodo(title, text))
+    )
   }
 }
 
