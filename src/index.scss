@@ -1,0 +1,11 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+body {
+  background-color: #E1F5FE;
+
+  .container--small {
+    max-width: 700px;
+  }
+}
+
