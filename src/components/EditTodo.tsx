@@ -1,9 +1,21 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 
-class EditForm extends Component {
-  constructor(props) {
+export interface Props {
+  id: number,
+  text: string,
+  updateTodo(id: number, text: string): void,
+  history: {
+    push(input: string): void,
+  }
+}
+
+export interface State {
+  text: string,
+}
+
+class EditForm extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -11,7 +23,7 @@ class EditForm extends Component {
     }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!this.state.text.trim()) { return }
 
@@ -20,7 +32,7 @@ class EditForm extends Component {
     history.push("/todos")
   }
 
-  handleUpdate = (text) => {
+  handleUpdate = (text: string) => {
     this.setState({ text })
   }
 
@@ -44,15 +56,6 @@ class EditForm extends Component {
       </div>
     )
   }
-}
-
-EditForm.propTypes = {
-  id: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
-  updateTodo: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  })
 }
 
 export default EditForm

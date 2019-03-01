@@ -1,8 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const FlashList = ({ flashes, removeFlash }) => {
-  if (!flashes.length > 0) { return null }
+interface Flash {
+  id: number,
+  text: string
+}
+export interface Props {
+  removeFlash(id: number): void,
+  flashes: Flash[],
+}
+
+const FlashList = ({ flashes, removeFlash }: Props) => {
+  if (!(flashes.length > 0)) { return null }
 
   return (
     <div className="container my-2">
@@ -21,13 +29,6 @@ const FlashList = ({ flashes, removeFlash }) => {
       ))}
     </div>
   )
-}
-
-FlashList.propTypes = {
-  removeFlash: PropTypes.func.isRequired,
-  flashes: PropTypes.arrayOf(
-    PropTypes.shape({ text: PropTypes.string.isRequired })
-  ).isRequired
 }
 
 export default FlashList

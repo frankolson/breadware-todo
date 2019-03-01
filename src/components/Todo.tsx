@@ -1,8 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const Todo = ({ toggleTodo, removeTodo, id, completed, role, text }) =>(
+export interface Props {
+  toggleTodo: any,
+  removeTodo: any,
+  id: number,
+  completed: boolean,
+  role: string,
+  text: string,
+}
+
+const Todo = ({ toggleTodo, removeTodo, id, completed, role, text }: Props) =>(
   <li className="list-group-item d-flex justify-content-between">
     <div>
       <i
@@ -24,15 +32,6 @@ const Todo = ({ toggleTodo, removeTodo, id, completed, role, text }) =>(
     }
   </li>
 )
-
-Todo.propTypes = {
-  toggleTodo: PropTypes.func.isRequired,
-  removeTodo: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  completed: PropTypes.bool.isRequired,
-  role: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired
-}
 
 export default Todo
 

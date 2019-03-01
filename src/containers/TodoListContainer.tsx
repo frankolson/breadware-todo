@@ -1,8 +1,11 @@
+import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { toggleTodo, removeTodo } from '../actions'
+
+import { StoreState, Todo } from '../types'
+import * as actions from '../actions/todoActions'
 import TodoList from '../components/TodoList'
 
-const getVisibleTodos = (todos, filter) => {
+function getVisibleTodos(todos: Array<Todo>, filter: string) {
   switch (filter) {
     case 'SHOW_ALL':
       return todos
@@ -15,7 +18,7 @@ const getVisibleTodos = (todos, filter) => {
   }
 }
 
-const mapStateToProps = (state, { match: { params } }) => {
+export function mapStateToProps(state: StoreState, { match: { params } }) {
   return {
     role: state.user.role,
     totalTodoCount: state.todos.length,
@@ -23,10 +26,10 @@ const mapStateToProps = (state, { match: { params } }) => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+export function mapDispatchToProps(dispatch: Dispatch) {
   return {
-    toggleTodo: id => dispatch(toggleTodo(id)),
-    removeTodo: id => dispatch(removeTodo(id))
+    toggleTodo: id => dispatch(actions.toggleTodo(id)),
+    removeTodo: id => dispatch(actions.removeTodo(id))
   }
 }
 

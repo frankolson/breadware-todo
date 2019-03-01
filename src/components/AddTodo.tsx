@@ -1,13 +1,23 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 
-class AddTodo extends Component {
+export interface Props {
+  addTodo(text: string): void,
+  history: {
+    push(input: string): void,
+  }
+}
+
+export interface State {
+  text: string,
+}
+
+class AddTodo extends Component<Props, State> {
   state = {
     text: ''
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!this.state.text.trim()) { return }
 
@@ -16,7 +26,7 @@ class AddTodo extends Component {
     history.push("/todos")
   }
 
-  handleUpdate = (text) => {
+  handleUpdate = (text: string) => {
     this.setState({ text })
   }
 
@@ -40,13 +50,6 @@ class AddTodo extends Component {
       </div>
     )
   }
-}
-
-AddTodo.propTypes = {
-  addTodo: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  })
 }
 
 export default AddTodo

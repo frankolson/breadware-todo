@@ -2,15 +2,15 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import todoApp from './reducers'
 import routes from './routes'
 import './index.scss'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(todoApp, composeEnhancers(
+const store = createStore(todoApp, composeWithDevTools(
   applyMiddleware(thunk),
 ))
 

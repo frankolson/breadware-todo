@@ -3,9 +3,15 @@ import {
   REMOVE_TODO,
   TOGGLE_TODO,
   UPDATE_TODO
-} from '../actions'
+} from '../constants'
+import { TodoAction } from '../actions/todoActions'
+import { Todo } from '../types'
 
-const todos = (state = [], action) => {
+interface TodosState extends Array<Todo> {}
+
+const initialState:TodosState = []
+
+function todos(state:TodosState = initialState, action:TodoAction) {
   switch (action.type) {
     case ADD_TODO:
       return [

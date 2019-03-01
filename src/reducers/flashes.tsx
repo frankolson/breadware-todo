@@ -1,6 +1,12 @@
-import { ADD_FLASH, REMOVE_FLASH } from '../actions'
+import { ADD_FLASH, REMOVE_FLASH } from '../constants'
+import { FlashAction } from '../actions/flashActions'
+import { Flash } from '../types'
 
-const flashes = (state = [], action) => {
+interface FlashesState extends Array<Flash> {}
+
+const initialState:FlashesState = []
+
+function flashes(state:FlashesState = initialState, action:FlashAction) {
   switch (action.type) {
     case ADD_FLASH:
       return [

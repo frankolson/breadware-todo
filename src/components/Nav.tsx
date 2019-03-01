@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
-class Nav extends Component {
+export interface Props {
+  authenticated(role: string): void,
+  inauthenticate(): void,
+  role: string,
+  history: {
+    push(location: string): void,
+  }
+}
+
+class Nav extends Component<Props, {}> {
   logout = () => {
     this.props.history.push('/')
     this.props.inauthenticate()
@@ -31,15 +39,6 @@ class Nav extends Component {
       </div>
     )
   }
-}
-
-Nav.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
-  inauthenticate: PropTypes.func.isRequired,
-  role: PropTypes.string,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
 }
 
 export default Nav
